@@ -1,0 +1,28 @@
+.otherList{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-left: 1rem;
+    column-count: 1;
+    width: fit-content;
+}
+
+.otherList > li{
+    padding: 8px 4px;
+    padding-left: 0;
+    width: fit-content;
+}
+
+
+@media(min-width: 600px){
+    .rightCol{
+        /* width: 50%; */
+    }
+}
+
+/*
+xs, extra-small: 0px
+sm, small: 600px
+md, medium: 900px
+lg, large: 1200px
+xl, extra-large: 1536px*/

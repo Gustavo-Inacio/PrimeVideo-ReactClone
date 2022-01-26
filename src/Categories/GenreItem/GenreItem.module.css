@@ -1,0 +1,14 @@
+.genreLink{
+    color: #8197a4;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all ease 0.35s;
+}
+
+.genreLink a{
+    width: 100%;
+}
+
+.genreLink:hover{
+    color: #fff;
+}

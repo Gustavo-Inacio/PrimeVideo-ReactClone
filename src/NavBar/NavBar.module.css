@@ -1,0 +1,113 @@
+.container{
+    display: flex;
+    height: 72px;
+    padding: 16px 32px;
+    background: #0f171e;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0 ;
+    right: 0;
+}
+
+.navbar{
+    display: flex;
+    width: 100%;
+}
+
+.logo img{
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+}
+
+.searchBarDiv{
+    display: flex;
+}
+
+.searchBarDiv input{
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
+    line-height: 20px;
+    color: #ffff;
+    cursor: pointer;
+    padding-left: 34px;
+    padding-right: 7px;
+    width: 250px;
+
+    font-size: 17px;
+    line-height: 24px;
+
+    transition: all 0.2s;
+    width: 0;
+    outline: 0;
+}
+
+.searchBarDiv input:focus{
+    border: 1px solid rgb(129,151,164);
+    width: 250px;
+}
+
+.searchIcon{
+    align-self: center;
+    height: 20px;
+    object-fit: contain;
+
+    transform: translateX(30px);
+    pointer-events: none;
+   
+}
+
+.searchIcon path{
+    fill: #babdc0;
+}
+/* 
+.navigation{
+    display: flex;
+    flex-grow: 1;
+
+}
+
+.navigation *{
+    color: white;
+    text-decoration: none;
+    text-align: center;
+} */
+
+.profileContainer{
+    display: flex;
+    gap: 8px;
+    color: #d0e0e3;
+    margin-left: 16px;
+}
+
+.profileNameContainer{
+    display: flex;
+    align-items: center;
+    display: none;
+}
+
+.profileIMG{
+    content: '';
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: 100%;
+    align-self: center;
+    background-image: url('../assets/img/profile-img.png');
+}
+
+@media(min-width: 450px){
+    .profileNameContainer{
+        display: flex;
+    }
+}
+
+@media(min-width: 770px){
+    .container{
+        display: flex;
+    }
+}

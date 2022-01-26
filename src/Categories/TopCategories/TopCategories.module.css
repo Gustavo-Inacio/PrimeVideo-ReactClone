@@ -1,0 +1,11 @@
+
+.sectionTitle{
+    font-size: 17px;
+    color: #fff;
+}
+
+.topCategorieList{
+    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}

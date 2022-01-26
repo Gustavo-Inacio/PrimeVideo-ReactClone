@@ -1,0 +1,11 @@
+.aciveLink{
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: base-line;
+}
+
+@media(min-width: 1040px){
+
+}

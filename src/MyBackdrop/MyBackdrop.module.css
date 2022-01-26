@@ -1,0 +1,10 @@
+.backdrop{
+    z-index: 999;
+    background-color: #171c209f;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}

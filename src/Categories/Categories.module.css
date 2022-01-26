@@ -1,0 +1,64 @@
+.categoriesContainer{
+    background: #252e39;
+    padding: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.genresTitle{
+    font-size: 17px;
+    color: #fff;
+    width: fit-content;
+}
+
+.genresSide{
+    display: flex; 
+    flex-wrap: wrap;
+    margin-top: 30px;
+    border-left: 1px solid #8197a4;   
+    margin-left: 16px;
+    padding-left: 16px;
+}
+
+.genreCol{
+    margin-right: auto;
+}
+
+.otherGenreCol{
+    margin-right: 20px;
+    
+}
+
+.col{
+    width: calc(100%);
+    display: flex;
+    flex-direction: row;
+}
+
+.genresSide{
+    /* gap: 20px; */
+}
+
+.genresSide > div{
+    width: 100%;
+}
+
+@media(min-width: 750px){
+    .genresSide{
+        margin-top: 0;
+    }
+
+    .genresTitle{
+        margin-top: 0.67em;
+    }
+    .col{
+        /* border:1px solid red; */
+        width: calc(50% - 8px);
+        flex-direction: column;
+    }
+
+    .genresSide > div{
+        width: 100%;
+    }
+}

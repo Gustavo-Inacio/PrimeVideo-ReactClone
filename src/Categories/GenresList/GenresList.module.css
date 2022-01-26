@@ -1,0 +1,27 @@
+.genresList{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-left: 1rem;
+    height: inherit; 
+    width: 100%;
+    column-width: 155px;
+}
+
+.genresList > li{
+    padding: 8px 4px;
+    padding-left: 0;
+}
+
+.col{
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    width:  fit-content;
+}
+
+@media(min-width: 750px){
+    .col{
+        width:  fit-content;
+    }
+}
