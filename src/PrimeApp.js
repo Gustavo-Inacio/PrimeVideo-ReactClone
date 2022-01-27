@@ -4,6 +4,7 @@ import {Routes, Route, BrowserRouter } from 'react-router-dom';
 
 import Home from './Home/Home';
 import MyBackdrop from './MyBackdrop/MyBackdrop';
+import Categories from './Categories/Categories';
 
 function PrimeApp() {
     const [backdropShow, setBackdropShow] = useState(false);
@@ -27,6 +28,7 @@ function PrimeApp() {
         
             <Routes>
                 <Route path="/" element={<Home></Home>}></Route>
+                <Route path="/categories" element={<Categories></Categories>}></Route>
             </Routes>
         </div>
     </BrowserRouter>

@@ -1,6 +1,6 @@
 .categoriesContainer{
     background: #252e39;
-    padding: 24px;
+    padding: 10px;
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -16,9 +16,9 @@
     display: flex; 
     flex-wrap: wrap;
     margin-top: 30px;
-    border-left: 1px solid #8197a4;   
-    margin-left: 16px;
-    padding-left: 16px;
+    border-left: none;   
+    margin-left: 0px;
+    padding-left: 0px;
 }
 
 .genreCol{
@@ -36,29 +36,37 @@
     flex-direction: row;
 }
 
-.genresSide{
-    /* gap: 20px; */
-}
-
 .genresSide > div{
     width: 100%;
 }
 
+@media(min-width: 500px){
+    .genresSide{
+        margin-left: 16px;
+        padding-left: 16px;
+        border-left: 1px solid #8197a4;   
+    }
+}
+
 @media(min-width: 750px){
     .genresSide{
-        margin-top: 0;
+        margin-top: 0; 
     }
-
+    
     .genresTitle{
         margin-top: 0.67em;
+     
     }
     .col{
-        /* border:1px solid red; */
         width: calc(50% - 8px);
         flex-direction: column;
     }
 
     .genresSide > div{
         width: 100%;
+    }
+    
+    .categoriesContainer{
+        padding: 24px;
     }
 }

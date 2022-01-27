@@ -1,13 +1,16 @@
 
 .navigation{
-    padding-left: 40px;
+    padding-left: 0px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    flex-grow: 0;
     align-self: center;
+    height: 100%;
+    margin: -16px 0;
 }
 
 .browseResponsive{
+    height: 100%;
     display: flex;
     align-items: center;
     color: white;
@@ -15,8 +18,15 @@
     width: fit-content;
 }
 
+.categoriesDropSection{
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+}   
 
-.navigation *{
+
+.navigation .navigationItem .myNavLink, .dumbNavLink{
     color: white;
     text-decoration: none;
     text-align: start;
@@ -38,28 +48,111 @@
     margin: 0;
 }
 
-.navigation li{
+.navigation > ul a{
+    height: 100%;
+}
+
+.navigation .navigationItem{
     height: 100%;
     width: 100%;
-    padding: 14px 48px 14px 20px;
+}
+
+.myNavLink{
+    display: flex;
+    padding: 14px 0px 14px 0px;
+}
+
+
+.hamburger{
+    display: flex;
+}
+
+.browseResponsive p{
+    display: none;
+}
+
+.categoriesDropSection{
+    display: none;
+}
+
+.myNavLink{
+    justify-content: start !important;
+    padding: 14px 20px 14px 20px !important;
+}
+
+.categorieBigScreenLink{
+    display: none;
+    align-items: center;
+    cursor: pointer;
+}
+.categorieBigScreenLink p {
+   
+    margin: 0;
+}
+
+.categorieSmallScreenLink{
+    display: inline;
+}
+
+@media(min-width: 400px){
+    .navigation{
+        padding-left: 40px;
+        flex-grow: 1;
+    }
+    .browseResponsive p{
+        display: flex;
+    }
+    
+
+    .hamburger{
+        display: none;
+    }
 }
 
 @media(min-width: 1040px){
+    
+    .myNavLink{
+        justify-content: center !important;
+        padding: 0 !important;
+    }
+
     .navigation > ul{
         flex-direction: row;
         display: flex !important;
         position: initial;
         background-color: transparent;
-        /* width: fit-content; */
+        margin: -16px 0;
+        height: calc(100% + 32px);
+        margin: -16px 0;
+
+      
+    }
+
+    .categoriesItem:hover .categoriesDropSection{
+        display: flex;
+        cursor: initial;
+    }
+
+    .categorieBigScreenLink{
+        display: flex;
+    }
+
+    
+    .categorieSmallScreenLink{
+        display: none;
+    }
+
+    .categoriesDropSection:hover{
+        display: flex;
     }
 
     .browseResponsive{
         display: none;
     }
+    
 
-    .navigation li{
+    .navigation .navigationItem{
         padding: 0;
         width: fit-content;
-        gap: 16px;
     }
 }

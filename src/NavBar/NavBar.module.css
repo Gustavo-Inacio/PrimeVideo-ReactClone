@@ -1,10 +1,10 @@
 .container{
     display: flex;
     height: 72px;
-    padding: 16px 32px;
+    padding: 8px 16px;
     background: #0f171e;
     z-index: 1000;
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0 ;
     right: 0;
@@ -15,71 +15,83 @@
     width: 100%;
 }
 
+.logo{
+    order: 2;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+   
+}
+
+.navigation{
+    order: 1;
+}
+
 .logo img{
     height: 32px;
     width: auto;
     object-fit: contain;
+    max-width: 80px;
 }
 
 .searchBarDiv{
     display: flex;
+    order: 3;
 }
 
 .searchBarDiv input{
     border: none;
     background-color: transparent;
-    font-size: 15px;
-    line-height: 20px;
     color: #ffff;
     cursor: pointer;
+    position: relative;
     padding-left: 34px;
     padding-right: 7px;
-    width: 250px;
 
     font-size: 17px;
     line-height: 24px;
-
+    top: 0;
     transition: all 0.2s;
     width: 0;
     outline: 0;
+    background-position: center left 10px;
+    background-image: url(../assets/img/search-icon.svg);
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
 }
 
 .searchBarDiv input:focus{
     border: 1px solid rgb(129,151,164);
-    width: 250px;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    background-color: black;
 }
+
 
 .searchIcon{
     align-self: center;
     height: 20px;
     object-fit: contain;
-
-    transform: translateX(30px);
     pointer-events: none;
-   
+    transform: translateX(30px);
 }
 
 .searchIcon path{
     fill: #babdc0;
 }
-/* 
-.navigation{
-    display: flex;
-    flex-grow: 1;
-
-}
-
-.navigation *{
-    color: white;
-    text-decoration: none;
-    text-align: center;
-} */
 
 .profileContainer{
     display: flex;
     gap: 8px;
     color: #d0e0e3;
     margin-left: 16px;
+    order: 4;
 }
 
 .profileNameContainer{
@@ -91,8 +103,8 @@
 .profileIMG{
     content: '';
     display: inline-block;
-    height: 32px;
-    width: 32px;
+    height: 21px;
+    width: 21px;
     background-size:contain;
     background-repeat: no-repeat;
     background-position: 100%;
@@ -100,9 +112,49 @@
     background-image: url('../assets/img/profile-img.png');
 }
 
+
+@media(min-width: 400px){
+    .logo{
+        order: 1;
+        flex-grow: 0;
+    }
+
+    .navigation{
+        order: 2;
+    }
+
+    .logo img{
+        max-width: inherit;
+    }
+}
+
 @media(min-width: 450px){
+    .container{
+        padding: 16px 32px;
+    }
+
     .profileNameContainer{
         display: flex;
+    }
+
+    .profileIMG{
+        height: 32px;
+        width: 32px;
+    }
+}
+
+@media(min-width: 700px){
+    .searchBarDiv input{
+        position: relative;
+    }
+    
+    
+    .searchBarDiv input:focus{
+        border: 1px solid rgb(129,151,164);
+        width: 250px;
+        position: relative;
+        background-color: black;
+
     }
 }
 
