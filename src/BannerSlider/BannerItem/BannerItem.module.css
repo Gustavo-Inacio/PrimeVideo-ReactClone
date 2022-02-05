@@ -1,0 +1,7 @@
+.container{
+    width: 100vw;
+    background-size: cover;
+    background-position: center 60%;
+    height: calc(100vw / 4.4);
+    min-height: 200px;
+}

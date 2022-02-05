@@ -1,0 +1,25 @@
+.dot{
+    /* border: 1px solid white; */
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 1px 1px 4px rgb(0 0 0 / 40%);
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.activeDot{
+    background: hsla(0,0%,100%,.9);
+}
+
+.dotControls{
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    padding: 14px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}

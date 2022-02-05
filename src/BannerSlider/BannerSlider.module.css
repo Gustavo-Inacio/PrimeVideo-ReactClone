@@ -1,0 +1,21 @@
+.bannerSlider{
+    overflow: hidden;
+    position: relative;
+    max-width: 100vw;
+}
+
+.innerSlider{
+    display: flex;
+    flex-wrap: nowrap;
+    width: fit-content;
+    position: relative;
+    left: 0;
+}
+
+.sequencialControlls{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100%;
+    padding: 6px;
+}
