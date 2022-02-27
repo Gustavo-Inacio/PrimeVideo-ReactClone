@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from './NavBar.module.css';
 import {NavLink, useResolvedPath,useMatch, Outlet} from 'react-router-dom'
-import logo from '../assets/img/logo.svg';
+import logo from '../../assets/img/search-icon.svg';
 
 import Navigation from '../Navigation/Navigation';
 

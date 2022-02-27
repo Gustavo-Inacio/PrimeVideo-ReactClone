@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import NavBar from './NavBar/NavBar';
+import NavBar from './components/NavBar/NavBar';
 import {Routes, Route, BrowserRouter } from 'react-router-dom';
 
-import Home from './Home/Home';
-import MyBackdrop from './MyBackdrop/MyBackdrop';
-import Categories from './Categories/Categories';
-import Store from './Store/Store';
+import Home from './pages/Home/Home';
+import MyBackdrop from './components/MyBackdrop/MyBackdrop';
+import Categories from './components/Categories/Categories';
+import Store from './pages/Store/Store';
 
 const PrimeApp = () => {
     const [backdropShow, setBackdropShow] = useState(false);

@@ -1,5 +1,5 @@
 import React from 'react';
-import categorieBackground from '../../../assets/img/movies-background.png';
+import categorieBackground from '../../../../assets/img/movies-background.png';
 import { Link } from 'react-router-dom';
 import classes from './TopCategorie.module.css';
 

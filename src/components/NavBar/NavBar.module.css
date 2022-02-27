@@ -57,7 +57,7 @@
     width: 0;
     outline: 0;
     background-position: center left 10px;
-    background-image: url(../assets/img/search-icon.svg);
+    background-image: url(../../assets/img/search-icon.svg);
     background-repeat: no-repeat;
     background-size: 20px 20px;
 }
@@ -109,7 +109,7 @@
     background-repeat: no-repeat;
     background-position: 100%;
     align-self: center;
-    background-image: url('../assets/img/profile-img.png');
+    background-image: url('../../assets/img/profile-img.png');
 }
 
 
