@@ -1,25 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { SoundToggler } from '../UI/Button/MyButton';
 import classes from './MovieBackInfoTrailer.module.css';
 
 
-function MovieBackInfoTrailer({info, style, movieID,  ...props}) {
+function MovieBackInfoTrailer({info, style, movieID, muted,setIsMuted,  ...props}) {
 
-    console.log(info.videos)
     const playerRef = useRef(null);
     const [videoID, setVideoID] = useState(movieID);
-    // let id = `0UP-ejMMmv0`;
-    console.log(videoID)
 
     const onPlayerReady = e => {
         e.target.playVideo();
-        
+        if(!muted) 
+            e.target.unMute();
+        else
+            e.target.mute();
+
+            console.log(window.YT)
     }
     const onPlayerChange = (e) => {
-        console.log(e)
-        // e.target.playVideo();
-        // e.target.unMute();
-        // e.target.unMute();
-        console.log(e.target.getVolume());
+        if(e.target.isMuted() & muted) e.target.mute();
+        else e.target.unMute();
     }
     
 
@@ -32,7 +32,7 @@ function MovieBackInfoTrailer({info, style, movieID,  ...props}) {
                 'enablejsapi': 1,
                 'autoplay': 1,
                 'controls': 0,
-                'mute': 1,
+                'mute': muted,
                 'allowFullScreen': 0,
             },
             events: {
@@ -57,10 +57,20 @@ function MovieBackInfoTrailer({info, style, movieID,  ...props}) {
         }
     }, []);
 
-
+    
+    const soundTogglerHandler = () => {
+        setIsMuted(prev => {
+            if(playerRef.current.u){
+                if(prev && playerRef.current.isMuted()) playerRef.current.unMute();
+                else playerRef.current.mute();
+            }
+            return !prev
+        });
+    }
+ 
   return (
     <div className={classes.videoBackground} >
-                
+        <SoundToggler className={classes.soundToggler} onClick={soundTogglerHandler} muted={muted}/>
         <div className={classes.cvideoForeground} >
             <div id={`yt-player-${videoID}`} ></div>
         </div>

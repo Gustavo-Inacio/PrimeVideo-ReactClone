@@ -9,10 +9,10 @@ function Store() {
         e.target.playVideo();
     }
     const onPlayerChange = (e) => {
-        console.log(e)
+      
         e.target.playVideo();
         // e.target.unMute();
-        console.log(e.target.getVolume());
+
     }
     
 

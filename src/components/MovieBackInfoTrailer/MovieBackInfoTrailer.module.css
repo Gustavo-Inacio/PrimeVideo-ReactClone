@@ -1,3 +1,10 @@
+.soundToggler{
+  position: absolute;
+  top: 40px;
+  right: 70px;
+  z-index: 100;
+}
+
 .videoBackground {
     background: #000;
     /* height: 150%; */
@@ -5,6 +12,7 @@
     flex-grow: 1;
     overflow: hidden;
   }
+  
 
   .videoBackground iframe{
     --outer: 1.35;

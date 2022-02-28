@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import soundIcon from '../../../assets/img/sound-icon.svg';
+import muteIcon from '../../../assets/img/mute-icon.svg';
 let color = '#0f79af';
 
 export const MyButton = styled.button`
@@ -32,4 +34,18 @@ export const MyButton = styled.button`
     font-size: 17px;
     line-height: 20px;
 
+`;
+
+export const SoundToggler = styled.button`
+    border: none;
+    background-color: transparent;
+    display: flex;
+    background: ${props => props.muted ? `url(${muteIcon})` : `url(${soundIcon})`} ;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: rgba(0,0,0,.8);
+    border-radius: 50%;
 `;

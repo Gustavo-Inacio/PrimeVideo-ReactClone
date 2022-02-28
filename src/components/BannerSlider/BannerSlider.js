@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import BannerDotControlls from './BannerControls/BannerdotControlls/BannerDotControlls';
 import BannerSequencialControlls from './BannerControls/BannerSequencialControll/BannerSequencialControlls';
+import BannerItem from './BannerItem/BannerItem';
 import classes from './BannerSlider.module.css';
 
 function BannerSlider(props) {
@@ -14,7 +15,7 @@ function BannerSlider(props) {
     const innerStyles = {
         transform: `translateX(${innerOffsetLeft}px)`
     }
-
+    
     const finalX = useRef(0);
     const initialX = useRef(0);
     const isPressed = useRef(false);
@@ -88,8 +89,7 @@ function BannerSlider(props) {
     const moveToItem = (item) => {
         if(animationActive) return false;
 
-        item = item
-        let itemPos = (innerBannerBounding.current.width / props.children.length) * item;
+        let itemPos = (innerBannerBounding.current.width / props.movieData.length) * item;
         
         let checkedOffset = checkBounderies(-itemPos);
         
@@ -138,13 +138,25 @@ function BannerSlider(props) {
   return (
       <div ref={bannerRef} className={classes.bannerSlider} >
           <div ref={innerBannerRef} style={{transform :innerStyles.transform, transition : (animationActive ? `all ease ${animationTime / 1000}s` : 'none')}} className={classes.innerSlider} onTouchStart={mouseDownHandler} onMouseDown={mouseDownHandler} onTouchEnd={mouseUpHandler} onMouseUp={mouseUpHandler} onTouchMove={mouseMoveHandler} onMouseMove={mouseMoveHandler} onMouseLeave={mouseUpHandler}>
-            {props.children}
+              {props.movieData && props.movieData.map((item, index) => (
+                <BannerItem 
+                    key={item.id}
+                    link={'/minhacsa'}
+                    backdrop_path = {`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
+                    info={item}
+                    isActive={(index == activeItem)}
+                    
+                    isMuted={props.isMuted} 
+                    setIsMuted={props.setIsMuted}
+                />
+              ))}
           </div>
-          <BannerDotControlls quantity={props.children.length} dotClicked={dotControllClickHandler} activeItem={activeItem}></BannerDotControlls>
+
+          <BannerDotControlls quantity={props.movieData.length} dotClicked={dotControllClickHandler} activeItem={activeItem}></BannerDotControlls>
           {activeItem > 0 &&
                 <BannerSequencialControlls className={classes.sequencialControlls} onClick={sequencialBacklHandler}/>
           }
-          {activeItem < props.children.length -1 &&
+          {activeItem < props.movieData.length -1 &&
                 <BannerSequencialControlls next style={{right: 0}} className={classes.sequencialControlls} onClick={sequencialNextlHandler}/>
           }
       </div>

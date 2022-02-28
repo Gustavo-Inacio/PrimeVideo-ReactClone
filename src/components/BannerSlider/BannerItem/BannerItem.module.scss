@@ -4,4 +4,12 @@
     background-position: center 60%;
     height: calc(100vw / 4.4);
     min-height: 200px;
+    position: relative;
+    
+    .soundToggler{
+        position: absolute;
+        right: 70px;
+        top: 40px;
+        z-index: 100;
+    }
 }
