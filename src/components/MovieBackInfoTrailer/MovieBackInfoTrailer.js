@@ -3,10 +3,9 @@ import { SoundToggler } from '../UI/Button/MyButton';
 import classes from './MovieBackInfoTrailer.module.css';
 
 
-function MovieBackInfoTrailer({info, style, movieID, muted,setIsMuted,  ...props}) {
+function MovieBackInfoTrailer({info, style, movieID, muted,setIsMuted, setShowMovieContent, ...props}) {
 
     const playerRef = useRef(null);
-    const [videoID, setVideoID] = useState(movieID);
 
     const onPlayerReady = e => {
         e.target.playVideo();
@@ -15,17 +14,22 @@ function MovieBackInfoTrailer({info, style, movieID, muted,setIsMuted,  ...props
         else
             e.target.mute();
 
-            console.log(window.YT)
+            console.log(e.target)
+            e.target.hideVideoInfo()
+
+            setTimeout(() => {
+                setShowMovieContent(false)
+                e.target.stopVideo();
+            }, (e.target.getDuration() - 15) * 1000);
     }
     const onPlayerChange = (e) => {
         if(e.target.isMuted() & muted) e.target.mute();
         else e.target.unMute();
     }
     
-
     const loadVideo = () => {
-        playerRef.current = new window.YT.Player(`yt-player-${videoID}`,{
-            videoId: videoID,
+        playerRef.current = new window.YT.Player(`yt-player-${movieID}`,{
+            videoId: movieID,
             playerVars: { 
                 height: '720',
                 width: '1080',
@@ -34,6 +38,8 @@ function MovieBackInfoTrailer({info, style, movieID, muted,setIsMuted,  ...props
                 'controls': 0,
                 'mute': muted,
                 'allowFullScreen': 0,
+                modestbranding:1,
+                showInfo: 0,
             },
             events: {
                 onReady: onPlayerReady,
@@ -45,7 +51,7 @@ function MovieBackInfoTrailer({info, style, movieID, muted,setIsMuted,  ...props
     useEffect(() => {
         if(!window.YT){
             const scriptTag = document.createElement('script');
-            scriptTag.src = "http://www.youtube.com/iframe_api";
+            scriptTag.src = "https://www.youtube.com/iframe_api";
 
             window.onYouTubeIframeAPIReady = loadVideo;
 
@@ -72,7 +78,7 @@ function MovieBackInfoTrailer({info, style, movieID, muted,setIsMuted,  ...props
     <div className={classes.videoBackground} >
         <SoundToggler className={classes.soundToggler} onClick={soundTogglerHandler} muted={muted}/>
         <div className={classes.cvideoForeground} >
-            <div id={`yt-player-${videoID}`} ></div>
+            <div id={`yt-player-${movieID}`} ></div>
         </div>
     </div>
   );

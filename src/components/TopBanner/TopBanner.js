@@ -12,9 +12,22 @@ function TopBanner(props) {
             include_video: 'true'
         }
 
-        let detailedList = await getDetailedMovieList(query, 'videos');
+        let detailedListRecived = await getDetailedMovieList(query, 'videos');
      
-        setBannerList(detailedList);
+        let filteredDetailedList = detailedListRecived.filter((item) => {
+            return (
+                    item.backdrop_path &&
+                    item.overview &&
+                    item.poster_path &&
+                    item.title &&
+                    item.videos.results.length > 0
+                )
+        }).slice(0, 10);
+
+        console.log('filter',filteredDetailedList)
+
+        console.log(detailedListRecived);
+        setBannerList(filteredDetailedList);
     }, []);
 
 

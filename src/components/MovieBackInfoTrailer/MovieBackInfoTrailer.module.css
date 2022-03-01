@@ -7,7 +7,7 @@
 
 .videoBackground {
     background: #000;
-    /* height: 150%; */
+    height: 100%;
     position: relative;
     flex-grow: 1;
     overflow: hidden;

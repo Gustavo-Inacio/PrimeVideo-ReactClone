@@ -25,14 +25,22 @@ export const MyButton = styled.button`
     transition: all ease 0.3s;
 
     color: ${props => props.color ? props.color : '#ffff'};
-    padding: 12px 16px;
     display: flex;
     align-items: center;
     cursor: pointer;
     
     font-family: 'Amazon Ember','Amazon Arabic Ember','Arial','sans-serif';
-    font-size: 17px;
-    line-height: 20px;
+    font-size: 14px;
+    
+    padding: ${props => props.theme.space.spacePad * 3 * 0.6}px ${props => props.theme.space.spacePad * 4 * 0.6}px;
+    @media (min-width: 750px) {
+        font-size: 14px;
+        padding: ${props => props.theme.space.spacePad * 3 * 0.8}px ${props => props.theme.space.spacePad * 4  * 0.8}px;
+    }
+    @media (min-width: 1040px) {
+        font-size: 17px;
+        padding: ${props => props.theme.space.spacePad * 3}px ${props => props.theme.space.spacePad * 4}px;
+    }
 
 `;
 

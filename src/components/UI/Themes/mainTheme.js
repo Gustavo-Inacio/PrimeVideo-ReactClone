@@ -6,5 +6,9 @@ export default {
 
     background: {
         'black': '#0f171e'
+    },
+
+    space: {
+        spacePad: '4'
     }
 }

@@ -1,3 +1,5 @@
+@import '../../../assets/variables/sassVariables';
+
 .container{
     width: 100vw;
     background-size: cover;
@@ -11,5 +13,51 @@
         right: 70px;
         top: 40px;
         z-index: 100;
+    }
+
+    .movieInfo{
+        background-color: $black;
+        width: calc(50% - 48px);
+    }
+
+    .movieBackInfoContainer{
+        top: 0;
+        right: 0;
+        position: relative;
+        flex-grow: 1;
+        
+        .movieTrailerGradient{
+            background: linear-gradient(to right, $black, transparent);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40%;
+            height: 100%;
+            z-index: 1;
+        }
+    }
+}
+
+@media(max-width: 750px){
+    .container{
+        .movieInfo, .movieBackInfoContainer{
+            display: none;
+        }
+    }
+}
+@media(min-width: 750px){
+    .container{
+        .movieInfo{
+            padding-left: 28px;
+            width: calc(68% - 48px);
+        }
+    }
+}
+
+@media(min-width: 1000px){
+    .container{
+        .movieInfo{
+            width: calc(50% - 48px);
+        }
     }
 }

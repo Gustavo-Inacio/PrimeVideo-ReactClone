@@ -1,0 +1,22 @@
+@import '../../assets/variables/sassVariables';
+
+@mixin container ($space){
+    .container{
+        display: flex;
+        flex-direction: column;
+        padding: $space * 3 $space * 8;
+        padding-bottom: $space * 3 + 26px;
+        
+        
+    }
+}
+
+@media (max-width: 750px) {
+    .container{
+       
+    }
+}
+@media(min-width: 750px){
+    $space: $spacePad * 0.6;
+    @include container($space);
+}
