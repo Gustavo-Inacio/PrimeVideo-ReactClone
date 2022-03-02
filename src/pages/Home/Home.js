@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <div>
-        <div style={{width: '100vw'}}>
+        <div style={{width: '100vw', minHeight: '300vh', background: '#0f171e'}}>
           <TopBanner isMuted={isMuted} setIsMuted={setIsMuted}/>
 
           <MainMovieDisplay />

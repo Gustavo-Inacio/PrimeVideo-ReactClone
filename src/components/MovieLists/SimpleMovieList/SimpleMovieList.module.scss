@@ -1,0 +1,22 @@
+.listContainer{
+    padding: 20px ;
+    display: flex;
+    height: px;
+    flex-wrap: nowrap;
+    // width: 100vw;
+    gap: 15px;
+
+
+    ul{
+        display: flex;
+        gap: 15px;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    li{
+        list-style: none;
+        min-width: 25%;
+    }
+}

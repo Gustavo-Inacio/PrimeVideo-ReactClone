@@ -1,16 +1,45 @@
 @import '../../../assets/variables/sassVariables';
 
 .cardContainer{
-    $width: 33vw;
-    display: flex;
+    $width: 25% ;
+    min-width: 20%;
+    display: block;
     flex-direction: column;
     margin: 0;
+    transition: transform 0.25s ease;
+    overflow: visible;
+    background-color: #ffff;
+    &:hover{
+        position: relative;
+        .innerContainer{
+            transform: scale(1.08);
+            z-index: 200;
+    
+            position: absolute;
+            left: 0;
+            right: 0;
+            transform-origin: center;
+            overflow: visible;
+
+            .cardContent{
+                display: flex;
+                z-index: 100;
+            }
+        }
+    }
 
     .cardHeader{
+        --aspecRatio: $movieCardImgRatio;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        width: $width;
-        height: $width / $movieCardImgRatio * 1px;
+        width: 100%;
+        height: 172px;
+    }
+
+    .cardContent{
+        flex-direction: column;
+        display: none;
+        background-color: #ffff;
     }
 }

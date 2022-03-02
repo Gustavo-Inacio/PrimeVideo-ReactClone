@@ -1,0 +1,8 @@
+@import '../../assets/variables/sassVariables';
+
+.container{
+    background-color: $black;
+    overflow-x: hidden;
+    overflow-y: visible;
+    min-height: 300vh;
+}
