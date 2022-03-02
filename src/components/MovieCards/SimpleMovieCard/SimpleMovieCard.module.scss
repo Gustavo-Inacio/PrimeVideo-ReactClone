@@ -1,0 +1,16 @@
+@import '../../../assets/variables/sassVariables';
+
+.cardContainer{
+    $width: 33vw;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+
+    .cardHeader{
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: $width;
+        height: $width / $movieCardImgRatio * 1px;
+    }
+}
