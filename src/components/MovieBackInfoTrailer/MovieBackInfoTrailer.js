@@ -14,7 +14,6 @@ function MovieBackInfoTrailer({info, style, movieID, muted,setIsMuted, setShowMo
         else
             e.target.mute();
 
-            console.log(e.target)
             e.target.hideVideoInfo()
 
             setTimeout(() => {

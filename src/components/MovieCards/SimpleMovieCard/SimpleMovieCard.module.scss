@@ -8,26 +8,36 @@
     margin: 0;
     transition: transform 0.25s ease;
     overflow: visible;
-    background-color: #ffff;
+    background-color: $black;
+
+    *{
+        color: #ffff;
+    }
+
     &:hover{
         position: relative;
         .innerContainer{
+            border: 1px solid $blue;
             transform: scale(1.08);
             z-index: 200;
-    
+            
             position: absolute;
             left: 0;
             right: 0;
             transform-origin: center;
             overflow: visible;
-
+            
             .cardContent{
                 display: flex;
                 z-index: 100;
             }
         }
     }
-
+    
+    .innerContainer{
+        transition: all 0.6s ease;
+        border: none;
+    }
     .cardHeader{
         --aspecRatio: $movieCardImgRatio;
         background-position: center;
@@ -40,6 +50,43 @@
     .cardContent{
         flex-direction: column;
         display: none;
-        background-color: #ffff;
+        background-color: $black;
+
+        .cardBody{
+            padding: 24px 13px;
+
+            .actionContainer{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 5px;
+
+                button{
+                    border: none;
+                    background-color: transparent;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    width: 36px;
+                    height: 36px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .btnPlayMovie{
+                    background-color: #000;
+                    border: 1px solid #fff;
+
+                    path{
+                        fill: #fff
+                    }
+                }
+
+                .spnMovieTitle{
+                    font-size: 15px;
+                    font-weight: 700;
+                }
+            }
+        }
     }
 }

@@ -11,7 +11,7 @@ function Categories() {
 
   useEffect(async () => {
     const genres = await storedGenres();
-    console.log(genres)
+
     setBasicGenres(genres.genres)
   }, [])
 

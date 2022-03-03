@@ -19,7 +19,7 @@ function SimpleMovieCard({movieData, ...props}) {
         <div className={classes.cardContent}>
           <div className={classes.cardBody}>
             <div className={classes.actionContainer}>
-                <button className={classes.btnPlayMovieb}>
+                <button className={classes.btnPlayMovie}>
                   <PlayArrowIcon />
                 </button>
                 <span className={classes.spnMovieTitle}>{movieData.title}</span>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getMovieList } from '../../requests/TMDB/getData';
+import { getDetailedMovieList, getMovieList } from '../../requests/TMDB/getData';
 import SimpleMovieList from '../MovieLists/SimpleMovieList/SimpleMovieList'
 import classes from './MainMovieDisplay.module.scss'
 
@@ -12,7 +12,7 @@ function MainMovieDisplay() {
       const query = {
         with_companies: '20580'
       }
-      let list = await getMovieList(query);
+      let list = await getDetailedMovieList(query);
       return {title: 'Amazon Original', list : list};
     };
 
@@ -26,8 +26,8 @@ function MainMovieDisplay() {
 
   return (
     <div className={classes.container}>
-      {movieLists && movieLists.map((item) => (
-        <SimpleMovieList listData={item}/>
+      {movieLists && movieLists.map((item, index) => (
+        <SimpleMovieList key={`${index}-${item.title}`} listData={item}/>
       ))}
     </div>
   )
