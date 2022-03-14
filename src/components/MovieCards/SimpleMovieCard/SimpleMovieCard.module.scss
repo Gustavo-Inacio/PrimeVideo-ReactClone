@@ -10,6 +10,8 @@
     overflow: visible;
     background-color: $black;
 
+    cursor: pointer;
+
     *{
         color: #ffff;
     }
@@ -31,12 +33,20 @@
                 display: flex;
                 z-index: 100;
             }
+
+            
         }
     }
     
     .innerContainer{
         transition: all 0.6s ease;
         border: none;
+        position: relative;
+
+        .badgeContainer{
+            position: absolute;
+            z-index: 100;
+        }
     }
     .cardHeader{
         --aspecRatio: $movieCardImgRatio;
@@ -48,13 +58,19 @@
     }
 
     .cardContent{
+        $moveTop: 80px;
+
         flex-direction: column;
         display: none;
-        background-color: $black;
+        background-image: linear-gradient(to bottom, transparent, $black ($moveTop * 0.8));
+        margin-top: -$moveTop;
+        padding: 24px;
+        padding-top: $moveTop - 24px ;
+
+        height: 100%;
 
         .cardBody{
-            padding: 24px 13px;
-
+        
             .actionContainer{
                 display: flex;
                 flex-direction: row;
@@ -75,10 +91,27 @@
 
                 .btnPlayMovie{
                     background-color: #000;
-                    border: 1px solid #fff;
+                    border: 2.2px solid #fff;
+                    transition: all 0.4s ease;
 
+                    display: flex;
+                    align-content: center;
+                    justify-content: center;
+
+                    svg{
+                        height: 16px;
+                        margin-left: 4px;
+                    }
                     path{
-                        fill: #fff
+                        fill: #fff;
+                        stroke: none;
+                    }
+                    
+
+                    &:hover{
+                        border: 2.2px solid transparent;
+
+                        background-color: rgba($blue, .8);
                     }
                 }
 
@@ -86,6 +119,77 @@
                     font-size: 15px;
                     font-weight: 700;
                 }
+
+                .smallActionsContainer{
+                    display: flex;
+                    margin-left: auto;
+                    align-items: center;
+                   
+                    button{
+                        padding: 0;
+                        height: 100%;
+                    }
+
+                    .icon{
+                        height: 20px;
+                        *{
+                            stroke-width: 1.8px;
+                            stroke: #fff;
+                        }
+                    }
+
+                }
+            }
+
+            .cardContentText{
+                .pProviderTag{
+                    display: block;
+                    margin-bottom: 12px;
+                    color: $blue;
+                    font-size: 15px;
+                    font-weight: 700;
+                }
+
+                .cardMovieTitle{
+                    font-size: 15px;
+                    font-weight: 700;
+                    color: #ffff;
+                    margin: 0;
+                    margin-bottom: 4px;
+                }
+
+                .movieDescription{
+                    font-size: 13px;
+                    margin: 0;
+                    color: $whiteDark;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+
+                    line-clamp: 3;
+                    -webkit-line-clamp: 3;
+
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+
+        .cardFooter{
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            color: $whiteDark;
+            font-size: 13px;
+            gap: 12px;
+
+            .movieHasSubtitles{
+                svg{
+                    width: 20px;
+                }
+            }
+
+            .movieAgeRate{
+                min-width: 20px;
             }
         }
     }

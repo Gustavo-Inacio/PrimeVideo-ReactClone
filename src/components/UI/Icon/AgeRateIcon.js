@@ -7,6 +7,9 @@ const Container = styled.span`
     color: #f2f4f6;
     padding: 3px;
     border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     background-color: ${props => (
         props.age < 10 || props.age == 'L' ? '#7db75b' :
@@ -21,7 +24,7 @@ const Container = styled.span`
 
 function AgeRateIcon({age, ...props}) {
   return (
-    <Container age={age}>
+    <Container age={age} {...props}>
         <span>{(age < 10 ? 'L' : age)}</span>
     </Container>
   )

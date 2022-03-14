@@ -1,17 +1,23 @@
 import React from 'react'
 import classes from './SimpleMovieCard.module.scss';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PlayArrowIcon from '../../../assets/img/myPlayOutlined';
 import AddIcon from '@mui/icons-material/Add';
-import BlockIcon from '@mui/icons-material/Block';
+import AddOutlinedIcon from '../../../assets/img/myAddOutlined.js';
+import BlockIcon from '../../../assets/img/myBlockOutlined.js';
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
-import {Tooltip} from '@material-ui/core';
+
 import AgeRateIcon from '../../UI/Icon/AgeRateIcon';
 import SubtitlesIcon from '../../../assets/img/SubtitlesIcon';
+import MyCostumToolTip from '../../UI/MyCostumToolTip/MyCostumToolTip';
+import IncludedPrimeBadge from '../../UI/Icon/IncludedPrimeBadge';
 
 function SimpleMovieCard({movieData, ...props}) {
   return (
     <div className={classes.cardContainer}>
       <div className={classes.innerContainer}>
+      <span className={classes.badgeContainer}>
+        <IncludedPrimeBadge includedWithPrime={false} tooltip={true}/>
+      </span>
         <div className={classes.cardHeader} style={{backgroundImage: `url(${movieData.posterPath})`}}>
             
         </div>
@@ -24,21 +30,22 @@ function SimpleMovieCard({movieData, ...props}) {
                 </button>
                 <span className={classes.spnMovieTitle}>{movieData.title}</span>
                 <div className={classes.smallActionsContainer}>
-                  <Tooltip title="Play Trailer" arrow> 
+                  <MyCostumToolTip title="Play Trailer" options={{arrow:true, placement:'top'}}>
                     <button>
-                      <PlayArrowOutlinedIcon />
+                      <PlayArrowIcon className={classes.icon}/>
                     </button> 
-                  </Tooltip>
-                  <Tooltip title="Add to Watch List" arrow> 
+                  </MyCostumToolTip>
+                  <MyCostumToolTip title="Add to Watch List" options={{arrow:true, placement:'top'}} fontSize='large'>
                     <button>
-                      <AddIcon/> 
+                      <AddOutlinedIcon className={classes.icon}/>
                     </button> 
-                  </Tooltip>
-                  <Tooltip title="Hide" arrow> 
+                  </MyCostumToolTip>
+                  <MyCostumToolTip title="Hide" options={{arrow:true, placement:'top'}}>
                     <button>
-                      <BlockIcon />  
+                      <BlockIcon className={classes.icon}/>
                     </button> 
-                  </Tooltip>
+                  </MyCostumToolTip>
+  
                 </div>
             </div>
 
