@@ -1,44 +1,24 @@
-import React from 'react'
+import React, { useRef } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from "swiper";
+import "swiper/css/navigation";
 import SimpleMovieCard from '../../MovieCards/SimpleMovieCard/SimpleMovieCard';
+
+import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
+import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
+
 import classes from './SimpleMovieList.module.scss';
+import '../movieListSwiper.scss';
+import SimpleMovieSlider from './SimpleMovieSlider';
+import MovieListHeader from '../MovieListHeader/MovieListHeader';
 
 function SimpleMovieList({listData, ...props}) {
-
   return (
-    <div className={classes.listContainer}>
-        <ul>
-        {listData && listData.list.map((movie) => {
-            let ageRate = movie.release_and_ageRating.results.map((item) => {
-                if(item.release_dates[0].certification > 0){
-                    return item.release_dates[0].certification
-                }
-                else{
-                    return null
-                }
-            });
-
-            return(
-            <li key={movie.id}>
-                <SimpleMovieCard movieData={{
-                    watchProvider: 'Prime',
-                    posterPath: `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`,
-                    detailedVideoLink: '/',
-                    title: `${movie.title}`,
-                    description: movie.overview,
-                    year: (new Date(movie.release_date)).getFullYear(),
-                    ageRating: ageRate[0] || '',
-                    duration: '1h 20min',
-                    hasSubtitles: true,
-                    progress: '0.8',
-                    playLink: '/',
-                    trailerLink: '/'
-                }}/>
-
-            </li>
-            )
-        })}
-        </ul>
+    <div style={{position: 'relative'}}>
+        <MovieListHeader title={listData.title} brand={listData.watchProvider.logo_path}/>
+        <SimpleMovieSlider listData={listData}/>
     </div>
+
   )
 }
 

@@ -16,7 +16,7 @@ function SimpleMovieCard({movieData, ...props}) {
     <div className={classes.cardContainer}>
       <div className={classes.innerContainer}>
       <span className={classes.badgeContainer}>
-        <IncludedPrimeBadge includedWithPrime={false} tooltip={true}/>
+        <IncludedPrimeBadge includedWithPrime={movieData.watchProvider.included_with_prime} tooltip={true}/>
       </span>
         <div className={classes.cardHeader} style={{backgroundImage: `url(${movieData.posterPath})`}}>
             
@@ -50,7 +50,7 @@ function SimpleMovieCard({movieData, ...props}) {
             </div>
 
             <div className={classes.cardContentText}>
-              <p className={classes.pProviderTag}>Included with Prime</p>
+              <p className={classes.pProviderTag}>{movieData.watchProvider.included_sentence}</p>
 
               <h3 className={classes.cardMovieTitle}>{movieData.title}</h3>
               <p className={classes.movieDescription}>{movieData.description}</p>
