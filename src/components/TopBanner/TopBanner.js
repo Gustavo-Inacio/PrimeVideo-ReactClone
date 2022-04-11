@@ -24,9 +24,6 @@ function TopBanner(props) {
                 )
         }).slice(0, 10);
 
-        console.log('filter',filteredDetailedList)
-
-        console.log(detailedListRecived);
         setBannerList(filteredDetailedList);
     }, []);
 

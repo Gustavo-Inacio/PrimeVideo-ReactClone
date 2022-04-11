@@ -32,17 +32,31 @@ export const getMovieDetail = async(movieID, append_to_response) => {
     return movieDetail;
 }
 
+export const getMovieReleaseRating = async (movieID) => {
+    let movieInfo = await fetch(`${BASE_URL}/movie/${movieID}/release_dates?${API_KEY}&${LANG}`);
+    movieInfo = await movieInfo.json();
+    return movieInfo;
+};
+
 export const getDetailedMovieList = async(query = {}, append_to_response = '') => {
     let movieList = await getMovieList(query);
     movieList = movieList.results;
-    
-    let detailedMovieList = [];
-    for(let i in movieList){
-        let movieDetail = await getMovieDetail(movieList[i].id, append_to_response);
-        detailedMovieList.push(movieDetail);
-    }
 
-    return detailedMovieList;
+    const detailedMovies = Promise.all([
+        Promise.all(movieList.map(movie => getMovieDetail(movie.id, append_to_response))),
+        Promise.all(movieList.map(movie => getMovieReleaseRating(movie.id))),
+    ]).then(movies => {
+        let detailedMovieList = [];
+        for(let i = 0; i < movies[1].length && movies[0].length; i++){
+            movies[0][i].release_and_ageRating = movies[1][i];
+            detailedMovieList.push(movies[0][i])
+        }
+        
+        return detailedMovieList;
+    });
+
+  
+    return detailedMovies;
 }
 
 export const getTrending = async(type = 'all', time_window = 'week') => {

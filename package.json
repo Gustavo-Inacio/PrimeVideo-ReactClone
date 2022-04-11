@@ -18,6 +18,7 @@
     "react-swipeable-views": "^0.14.0",
     "sass": "^1.49.9",
     "styled-components": "^5.3.3",
+    "swiper": "^8.1.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

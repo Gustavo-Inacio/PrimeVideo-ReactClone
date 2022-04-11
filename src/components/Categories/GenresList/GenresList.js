@@ -2,24 +2,12 @@ import React from 'react';
 import GenreItem from '../GenreItem/GenreItem';
 import classes from './GenresList.module.css'
 
-function GenresList({col}) {
+function GenresList({col, genres, ...props}) {
   return (
     <ul className={classes.genresList} style={{columnCount : col || 1}}>
-        <li><GenreItem to={'/'}>Action and Advanture</GenreItem></li>
-        <li><GenreItem to={'/'}>Lorem ipsum</GenreItem></li>
-        <li><GenreItem to={'/'}>Lorem ipsum</GenreItem></li>
-        <li><GenreItem to={'/'}>Lorem ipsum</GenreItem></li>
-        <li><GenreItem to={'/'}>Lorem ipsum</GenreItem></li>
-        <li><GenreItem to={'/'}>Lorem ipsum</GenreItem></li>
-        <li><GenreItem to={'/'}>Lorem ipsum</GenreItem></li>
-        <li><GenreItem to={'/'}>Lorem ipsum</GenreItem></li>
-        <li><GenreItem to={'/'}>Lorem ipsum</GenreItem></li>
-        <li><GenreItem to={'/'}>Lorem ipsum</GenreItem></li>
-        <li><GenreItem to={'/'}>Lorem ipsum</GenreItem></li>
-        <li><GenreItem to={'/'}>Lorem ipsum</GenreItem></li>
-        <li><GenreItem to={'/'}>Lorem ipsum</GenreItem></li>
-        <li><GenreItem to={'/'}>Lorem ipsum</GenreItem></li>
-     
+        {genres.map((elem) => (
+            <li key={`${elem.name}${elem.id}`} ><GenreItem to={`/${elem.id}`}>{elem.name}</GenreItem></li>
+        ))}
     </ul>  
   );
 }

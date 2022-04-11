@@ -1,0 +1,29 @@
+.movieListHeaderContainer{
+    display: flex;
+    justify-content: space-between;
+
+    .leftSide{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+
+        $height: 24px;
+
+        .brand{
+            height: $height;
+            object-fit: contain;
+        }
+
+        .listTitle{
+            font-size: 19px;
+            font-weight: 700;
+            line-height: $height;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+    }
+
+    margin: 0 48px 10px 48px;
+}

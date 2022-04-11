@@ -1,0 +1,26 @@
+.movieListSwiper{
+    &:hover{
+        z-index: 2;
+    }
+
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: visible;
+
+    margin-top: 20px;
+
+    padding-left: 40px;
+   
+
+    .swiper-wrapper{
+        display: flex;
+        margin: 0;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        width: fit-content;
+    }
+
+    .swiper-slide{
+        width: 320px;
+    }
+}
