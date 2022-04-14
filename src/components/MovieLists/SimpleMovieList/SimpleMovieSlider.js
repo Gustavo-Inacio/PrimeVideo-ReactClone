@@ -7,7 +7,7 @@ import SimpleMovieCard from '../../MovieCards/SimpleMovieCard/SimpleMovieCard';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 
-import classes from './SimpleMovieList.module.scss';
+import classes from './SimpleMovieSlider.module.scss';
 import '../movieListSwiper.scss';
 
 function SimpleMovieSlider({listData , ...props}) {
@@ -69,7 +69,7 @@ function SimpleMovieSlider({listData , ...props}) {
               }}
 
             modules={[Navigation]}
-            spaceBetween={15}
+            spaceBetween={18}
             slidesPerGroupSkip={1}
             slidesPerGroup={2}
             slidesPerView='1.23'
@@ -98,8 +98,12 @@ function SimpleMovieSlider({listData , ...props}) {
                         hasSubtitles: true,
                         progress: '0.8',
                         playLink: '/',
-                        trailerLink: '/'
-                    }}/>
+                        trailerLink: '/',
+                        id: movie.id
+                    }} 
+
+                    edit={props.edit}
+                    />
 
                 </SwiperSlide>
                 )

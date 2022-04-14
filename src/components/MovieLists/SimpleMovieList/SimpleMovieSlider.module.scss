@@ -1,0 +1,30 @@
+.arrowLeft, .arrowRight{
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: all 0.6s ease;
+    justify-content: center;
+    align-items: center;
+    border: none;
+
+    &:hover{
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    z-index: 210;
+
+    @media(min-width: 600px){
+        display: flex;
+    }
+}
+
+.arrowLeft{
+    left: 0;
+}
+
+.arrowRight{
+    right: 0;
+}
