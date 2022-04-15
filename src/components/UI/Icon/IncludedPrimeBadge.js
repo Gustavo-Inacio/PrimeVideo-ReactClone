@@ -14,9 +14,7 @@ const Badge = styled.div`
 
     ${props => props.forTitle ? 
         `font-size: 8px;
-        padding: 2px 4px;
-        // height: 3px;
-        // transform: scale(0.5);`
+        padding: 2px 4px;`
     : 
         `outline: 4px solid #0f171e;
         font-size: 12px

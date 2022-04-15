@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from 'react'
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react'
 import classes from './SimpleMovieCard.module.scss';
 import PlayArrowIcon from '../../../assets/img/myPlayOutlined';
 import AddIcon from '@mui/icons-material/Add';
@@ -11,8 +11,29 @@ import SubtitlesIcon from '../../../assets/img/SubtitlesIcon';
 import MyCostumToolTip from '../../UI/MyCostumToolTip/MyCostumToolTip';
 import IncludedPrimeBadge from '../../UI/Icon/IncludedPrimeBadge';
 import MyExcludeFilled from '../../../assets/img/myExcludeFilled';
+import MovieBackInfoTrailer from '../../MovieBackInfoTrailer/MovieBackInfoTrailer';
+import { MuteContext } from '../../../store/mute-context';
+
+const soundTogglerStyle = {
+  top: '16px',
+  right: '16px',
+  width: '33px',
+  height: '33px'
+}
 
 function SimpleMovieCard({movieData, ...props}) {
+
+  const [showMovieContent, setShowMovieContent] = useState(false);
+
+  const onMouseTrailer = () => {
+    setShowMovieContent(true);
+  }
+
+  const onMouseTrailerLeave = () => {
+    setShowMovieContent(false);
+  }
+
+  const muteCtx = useContext(MuteContext);
   return (
     <>
       {props.edit && props.edit.value &&
@@ -26,12 +47,16 @@ function SimpleMovieCard({movieData, ...props}) {
       }
         
       <div className={classes.cardContainer}>
-        <div className={classes.innerContainer}>
+        <div className={classes.innerContainer} onMouseEnter={onMouseTrailer} onMouseLeave={onMouseTrailerLeave}>
         <span className={classes.badgeContainer}>
           <IncludedPrimeBadge includedWithPrime={movieData.watchProvider.included_with_prime} tooltip={true}/>
         </span>
-          <div className={classes.cardHeader} style={{backgroundImage: `url(${movieData.posterPath})`}}>
-              
+          <div className={classes.cardHeader} style={{backgroundImage: `url(${movieData.posterPath})`}} >
+              {/* <div className={classes.movieTrailerContainer}> */}
+                {showMovieContent && movieData.trailerID &&
+                  <MovieBackInfoTrailer setShowMovieContent={setShowMovieContent} muted={muteCtx.isMuted} setIsMuted={muteCtx.setIsMuted} movieID={movieData.trailerID} soundTogglerStyle={soundTogglerStyle}/>
+                }
+              {/* </div> */}
           </div>
 
           <div className={classes.cardContent}>

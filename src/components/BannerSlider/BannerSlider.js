@@ -145,9 +145,6 @@ function BannerSlider(props) {
                     backdrop_path = {`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
                     info={item}
                     isActive={(index == activeItem)}
-                    
-                    isMuted={props.isMuted} 
-                    setIsMuted={props.setIsMuted}
                 />
               ))}
           </div>

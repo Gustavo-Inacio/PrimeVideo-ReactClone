@@ -98,7 +98,7 @@ function SimpleMovieSlider({listData , ...props}) {
                         hasSubtitles: true,
                         progress: '0.8',
                         playLink: '/',
-                        trailerLink: '/',
+                        trailerID: movie.videos.results.length > 0 ? movie.videos.results[0].key : false,
                         id: movie.id
                     }} 
 

@@ -3,7 +3,7 @@ import BannerSlider from '../BannerSlider/BannerSlider';
 
 import { getDetailedMovieList} from '../../requests/TMDB/getData';
 
-function TopBanner(props) {
+function TopBanner() {
     const [bannerList, setBannerList] = useState(false);
 
     useEffect(async () => {
@@ -31,7 +31,7 @@ function TopBanner(props) {
     return (
         <>
             {bannerList && 
-                <BannerSlider controls={true} movieData={bannerList} isMuted={props.isMuted} setIsMuted={props.setIsMuted}/>
+                <BannerSlider controls={true} movieData={bannerList}/>
             }
         </>
     )

@@ -2,10 +2,17 @@ import React, { useEffect, useRef, useState } from 'react';
 import { SoundToggler } from '../UI/Button/MyButton';
 import classes from './MovieBackInfoTrailer.module.css';
 
+/* Props ----  
+    movieID -> yt video id
+    muted -> state 
+    setIsMuted -> setState
+    setShowMovieContent -> if the video has played to it's end
+*/
 
 function MovieBackInfoTrailer({info, style, movieID, muted,setIsMuted, setShowMovieContent, ...props}) {
 
     const playerRef = useRef(null);
+    const ytPlayerDivRef = useRef(null);
 
     const onPlayerReady = e => {
         e.target.playVideo();
@@ -25,9 +32,13 @@ function MovieBackInfoTrailer({info, style, movieID, muted,setIsMuted, setShowMo
         if(e.target.isMuted() & muted) e.target.mute();
         else e.target.unMute();
     }
+
+    const onErrorHandler = () => {
+        setShowMovieContent(false)
+    }
     
     const loadVideo = () => {
-        playerRef.current = new window.YT.Player(`yt-player-${movieID}`,{
+        playerRef.current = new window.YT.Player(`${ytPlayerDivRef.current.id}`,{
             videoId: movieID,
             playerVars: { 
                 height: '720',
@@ -42,7 +53,8 @@ function MovieBackInfoTrailer({info, style, movieID, muted,setIsMuted, setShowMo
             },
             events: {
                 onReady: onPlayerReady,
-                onStateChange: onPlayerChange
+                onStateChange: onPlayerChange,
+                onError : onErrorHandler
             }
         })
     }
@@ -75,9 +87,9 @@ function MovieBackInfoTrailer({info, style, movieID, muted,setIsMuted, setShowMo
  
   return (
     <div className={classes.videoBackground} >
-        <SoundToggler className={classes.soundToggler} onClick={soundTogglerHandler} muted={muted}/>
+        <SoundToggler className={[classes.soundToggler, props.soundTogglerClass].join(' ')} style={props.soundTogglerStyle} onClick={soundTogglerHandler} muted={muted}/>
         <div className={classes.cvideoForeground} >
-            <div id={`yt-player-${movieID}`} ></div>
+            <div id={`yt-player-${movieID}${new Date().getTime()}${Math.random()}`} ref={ytPlayerDivRef}></div>
         </div>
     </div>
   );

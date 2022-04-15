@@ -15,7 +15,7 @@ function MainMovieDisplay() {
       const query = {
         with_companies: '20580'
       }
-      let list = await getDetailedMovieList(query);
+      let list = await getDetailedMovieList(query, 'videos');
 
       return {
         watchProvider : movieProviders['prime'],
@@ -57,7 +57,7 @@ function MainMovieDisplay() {
       const query = {
         with_companies: '20580'
       }
-      let list = await getDetailedMovieList(query);
+      let list = await getDetailedMovieList(query, 'videos');
 
       return {
         watchProvider : movieProviders['prime'],
