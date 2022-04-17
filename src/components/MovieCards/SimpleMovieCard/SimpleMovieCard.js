@@ -52,11 +52,9 @@ function SimpleMovieCard({movieData, ...props}) {
           <IncludedPrimeBadge includedWithPrime={movieData.watchProvider.included_with_prime} tooltip={true}/>
         </span>
           <div className={classes.cardHeader} style={{backgroundImage: `url(${movieData.posterPath})`}} >
-              {/* <div className={classes.movieTrailerContainer}> */}
-                {showMovieContent && movieData.trailerID &&
-                  <MovieBackInfoTrailer setShowMovieContent={setShowMovieContent} muted={muteCtx.isMuted} setIsMuted={muteCtx.setIsMuted} movieID={movieData.trailerID} soundTogglerStyle={soundTogglerStyle}/>
-                }
-              {/* </div> */}
+            {showMovieContent && movieData.trailerID &&
+              <MovieBackInfoTrailer setShowMovieContent={setShowMovieContent} muted={muteCtx.isMuted} setIsMuted={muteCtx.setIsMuted} movieID={movieData.trailerID} soundTogglerStyle={soundTogglerStyle}/>
+            }
           </div>
 
           <div className={classes.cardContent}>
@@ -77,9 +75,9 @@ function SimpleMovieCard({movieData, ...props}) {
                         <AddOutlinedIcon className={classes.icon}/>
                       </button> 
                     </MyCostumToolTip>
-                    <MyCostumToolTip title="Hide" options={{arrow:true, placement:'top'}}>
-                      <button>
-                        <BlockIcon className={classes.icon}/>
+                    <MyCostumToolTip title="Hide" options={{arrow:true, placement:'top'}} >
+                      <button onClick={() => {props.edit.onExclude(movieData.id)}}>
+                        <BlockIcon className={classes.icon} />
                       </button> 
                     </MyCostumToolTip>
     

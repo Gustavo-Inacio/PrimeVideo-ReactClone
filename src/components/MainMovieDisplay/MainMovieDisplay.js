@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import movieProviders from '../../assets/variables/movieProviders';
-import { getDetailedMovieList, getMovieList } from '../../requests/TMDB/getData';
+import { getDetailedMovieList, getDetailedTrending, getMovieList } from '../../requests/TMDB/getData';
 import EditMovieList from '../MovieLists/EditMovieList/EditMovieList';
 import MovieListBrain from '../MovieLists/MovieListBrain/MovieListBrain';
 import SimpleMovieList from '../MovieLists/SimpleMovieList/SimpleMovieList'
@@ -65,12 +65,23 @@ function MainMovieDisplay() {
         list : list
       };
     };
+    
+  const callToRequest2 = async () => {
+      let list = await getDetailedTrending();
+
+      return {
+        watchProvider : movieProviders['prime'],
+        title: 'Trending', 
+        list : list
+      };
+    };
+    
 
 
   return (
     <div className={classes.container}>
       <MovieListBrain listRequest={callToRequest} edit/>
-      <MovieListBrain listRequest={callToRequest} edit/> 
+      <MovieListBrain listRequest={callToRequest2} edit/> 
 
       <button onClick={reqHabdker}>REQUEST</button>
     </div>
