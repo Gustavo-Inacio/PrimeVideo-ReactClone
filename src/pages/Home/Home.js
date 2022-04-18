@@ -9,19 +9,19 @@ import { getDetailedMovieList, getMovieDetail, getMovieList } from '../../reques
 import TopBanner from '../../components/TopBanner/TopBanner';
 import { storedGenres } from '../../utilities/genresList';
 import MainMovieDisplay from '../../components/MainMovieDisplay/MainMovieDisplay';
+import { MuteCtxProvider } from '../../store/mute-context';
 
 export default function Home() {
 
   const [isMuted, setIsMuted] = useState(true);
 
   return (
-    <div>
-        <div style={{minHeight: '300vh', background: '#0f171e'}}>
-          <TopBanner isMuted={isMuted} setIsMuted={setIsMuted}/>
+    <MuteCtxProvider>
+      <div style={{minHeight: '300vh', background: '#0f171e'}}>
+        <TopBanner isMuted={isMuted} setIsMuted={setIsMuted}/>
 
-          <MainMovieDisplay />
-        </div>
-        
-    </div>
+        <MainMovieDisplay />
+      </div>
+    </MuteCtxProvider>
   );
 }

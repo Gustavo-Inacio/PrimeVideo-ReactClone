@@ -1,6 +1,7 @@
-const BASE_URL = `https://api.themoviedb.org/3`;
-const API_KEY = `api_key=${process.env.REACT_APP_KEY}`;
-const LANG = `language=en-US`;
+import config from './config';
+import GetShow from './getShow';
+
+const getShow = new GetShow();
 
 export const getMovieList = async (query = {}) => {
     // query= {
@@ -13,54 +14,42 @@ export const getMovieList = async (query = {}) => {
         stringQuery += `${i}=${query[i]}`;
     }
 
-    let movieList = await fetch(`${BASE_URL}/discover/movie?${API_KEY}${stringQuery}&${LANG}`);
+    let movieList = await fetch(`${config.BASE_URL}/discover/movie?${config.API_KEY}${stringQuery}&${config.LANG}`);
     movieList = await movieList.json();
     return movieList;
 }
 
 export const getGenres = async() => {
-    let genresList = await fetch(`${BASE_URL}/genre/movie/list?${API_KEY}&${LANG}`);
+    let genresList = await fetch(`${config.BASE_URL}/genre/movie/list?${config.API_KEY}&${config.LANG}`);
     genresList = genresList.json();
     return genresList;
 }
-
-export const getMovieDetail = async(movieID, append_to_response) => {
-    if(typeof movieID !== 'number') return;
-
-    let movieDetail = await fetch(`${BASE_URL}/movie/${movieID}?${API_KEY}&${LANG}&append_to_response=${append_to_response}`);
-    movieDetail = await movieDetail.json();
-    return movieDetail;
-}
-
-export const getMovieReleaseRating = async (movieID) => {
-    let movieInfo = await fetch(`${BASE_URL}/movie/${movieID}/release_dates?${API_KEY}&${LANG}`);
-    movieInfo = await movieInfo.json();
-    return movieInfo;
-};
 
 export const getDetailedMovieList = async(query = {}, append_to_response = '') => {
     let movieList = await getMovieList(query);
     movieList = movieList.results;
 
-    const detailedMovies = Promise.all([
-        Promise.all(movieList.map(movie => getMovieDetail(movie.id, append_to_response))),
-        Promise.all(movieList.map(movie => getMovieReleaseRating(movie.id))),
-    ]).then(movies => {
-        let detailedMovieList = [];
-        for(let i = 0; i < movies[1].length && movies[0].length; i++){
-            movies[0][i].release_and_ageRating = movies[1][i];
-            detailedMovieList.push(movies[0][i])
-        }
-        
-        return detailedMovieList;
-    });
+    const detailedMovies = Promise.all(
+        movieList.map(movie => getShow.detailed.show(movie.id, 'movie', append_to_response)),
+    ).then(movies => movies);
 
   
     return detailedMovies;
 }
 
 export const getTrending = async(type = 'all', time_window = 'week') => {
-    let trendingList = await fetch(`${BASE_URL}/trending/${type}/${time_window}?${API_KEY}&${LANG}`);
+    let trendingList = await fetch(`${config.BASE_URL}/trending/${type}/${time_window}?${config.API_KEY}&${config.LANG}`);
     trendingList = await trendingList.json();
     return trendingList;
+}
+
+export const getDetailedTrending = async(type = 'all', time_window = 'week', append_to_response = '') => {
+    let trendingList = await getTrending(type, time_window);
+    trendingList = trendingList.results;
+
+    const detailedItems = Promise.all(
+        trendingList.map(elem => getShow.detailed.show(elem.id, elem.media_type, append_to_response))
+    ).then((shows) => shows);
+
+    return await detailedItems;
 }

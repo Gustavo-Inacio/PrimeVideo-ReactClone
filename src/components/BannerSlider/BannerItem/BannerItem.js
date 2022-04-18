@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { MuteContext } from '../../../store/mute-context';
 import classes from './BannerItem.module.scss';
 import MovieOverlayInfo from '../../MovieOverlayInfo/MovieOverlayInfo';
 import MovieBackInfoTrailer from '../../MovieBackInfoTrailer/MovieBackInfoTrailer';
-import {SoundToggler} from '../../UI/Button/MyButton';
 
 function BannerItem(props) {
     const conatinerStyles = {
@@ -11,7 +11,25 @@ function BannerItem(props) {
         backgroundImage:`url(${props.backdrop_path})`
     }
 
+    const muteCtx = useContext(MuteContext);
     const [showMovieContent, setShowMovieContent] = useState(false);
+    const scrollHandler = () => {
+      if(window.scrollY > 200) setShowMovieContent(false)
+    }
+
+    const bannerHoverHandler = () => {
+      setTimeout(() => {
+        setShowMovieContent(true)
+        window.addEventListener('scroll', scrollHandler)
+
+      }, 1000);
+    }
+
+    useEffect(() => {
+      if(!showMovieContent) {
+        window.removeEventListener("scroll", scrollHandler)
+      }
+    }, [showMovieContent]);
 
     const movieContent = <MovieOverlayInfo key={props.info.id} info={props.info} style={{height: '100%'}}/>;
 
@@ -20,19 +38,12 @@ function BannerItem(props) {
       movieTrailer = (
         <MovieBackInfoTrailer 
           key={props.info.videos.results[0].id} 
-          info={props.info} movieID={props.info.videos.results[0].key} 
-          muted={props.isMuted} setIsMuted={props.setIsMuted}
+          info={props.info} 
+          movieID={props.info.videos.results[0].key} 
+          muted={muteCtx.isMuted} setIsMuted={muteCtx.setIsMuted}
           setShowMovieContent={setShowMovieContent}
-          
         />
       );
-  
-    const bannerHoverHandler = () => {
-      setTimeout(() => {
-        setShowMovieContent(true)
-      }, 1000);
-    }
-
   return (
       <div className={[props.className, classes.container].join(' ')} style={conatinerStyles} onMouseEnter={bannerHoverHandler} onTouchStart={bannerHoverHandler}>
         {(props.isActive && window.innerWidth > 750 )&&
